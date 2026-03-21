@@ -204,9 +204,6 @@ NNETB-For-Linux/
 > NNETB 的徽标为 HOE Team 所有，受法律保护。未经明确书面授权，不得用于商业用途或进行修改后使用。
 >
 > Linux® 是 Linus Torvalds 在美国和其他国家的注册商标。
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
 
 ---
 
