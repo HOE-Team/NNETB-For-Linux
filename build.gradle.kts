@@ -16,6 +16,7 @@ dependencies {
     // 使用跨平台依赖，而不是currentOs
     implementation(compose.desktop.common)
     implementation(compose.desktop.linux_x64)  // Linux x64原生库
+    implementation(compose.desktop.windows_x64)  // Windows x64原生库,*FOR DEBUG ONLY*
     implementation("org.jetbrains.compose.material3:material3:1.6.1")
     implementation("org.jetbrains.compose.material:material-icons-extended:1.6.1")
     implementation("com.github.oshi:oshi-core:6.4.10")
@@ -35,7 +36,7 @@ compose.desktop {
             // Linux only
             targetFormats(TargetFormat.Deb, TargetFormat.Rpm, TargetFormat.AppImage)
             packageName = "NNETBsNotEverythingToolbox"
-            packageVersion = "1.1.0"
+            packageVersion = "0.0.1"
             
             linux {
                 iconFile.set(project.file("images/logo.png"))

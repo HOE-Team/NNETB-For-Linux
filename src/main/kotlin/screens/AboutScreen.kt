@@ -26,20 +26,20 @@ fun AboutScreen() {
     ) {
         // 标题
         Text(
-            text = "非万",
+            text = "非万L(NFL)",
             style = MaterialTheme.typography.headlineLarge,
             textAlign = TextAlign.Start
         )
         Spacer(modifier = Modifier.height(8.dp))
         Text(
-            text = "NNETB's Not Everything Toolbox",
+            text = "NNETB's Not Everything Toolbox For Linux",
             style = MaterialTheme.typography.headlineSmall,
             textAlign = TextAlign.Start,
             color = MaterialTheme.colorScheme.primary
         )
         Spacer(modifier = Modifier.height(24.dp))
         Text(
-            text = "一个实验性、简约、现代的工具箱",
+            text = "一个为Linux编写的实验性、简约、现代的工具箱",
             style = MaterialTheme.typography.bodyLarge,
             textAlign = TextAlign.Start
         )
@@ -55,12 +55,12 @@ fun AboutScreen() {
         )
         Spacer(modifier = Modifier.height(12.dp))
         Text(
-            text = "分发渠道：Protostomia(Beta)",
+            text = "分发渠道：ElectronTube(Alpha)",
             style = MaterialTheme.typography.bodyMedium
         )
         Spacer(modifier = Modifier.height(8.dp))
         Text(
-            text = "版本：Protostomia-v1.1.0",
+            text = "版本：ElectronTube-v0.0.1",
             style = MaterialTheme.typography.bodyMedium
         )
 
