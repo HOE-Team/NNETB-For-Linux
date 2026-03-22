@@ -56,7 +56,7 @@
 
 * **操作系统**：Linux（推荐Arch、Debian/Ubuntu、Fedora、openSUSE等主流发行版，Linux Kernel 4.x+）
 > [!WARNING]
-> 本程序专为Linux平台设计，在非Linux系统上运行时功能受限（会显示警告）。
+> 本程序专为Linux平台设计，在非Linux系统上运行时功能受限（会显示警告）。Windows平台用户请访问 [NNETB's Not Everything Toolbox[↗]](https://github.com/HOE-Team/NNETB) 仓库。
 
 * **Java环境**：Java 21 或更高版本
 * **网络**：需要稳定网络连接（用于包管理器操作）
