@@ -4,15 +4,14 @@
 </div>
 
 <div align="center" class="NPL text">
-   <p>此项目属于 HOE Team PLAN NO 计划 <a href="#hoe-team-plan-no-计划">了解更多[↗]</a></p>
+   <p>此项目属于 HOE Team PLAN NO 计划 <a href="https://github.com/HOE-Team/.github/blob/main/profile/docs/INTRODUCE_PLAN_NO.md">了解更多[↗]</a></p>
 </div>
 
 <h1 align="center">NNETB's Not Everything Toolbox For Linux</h1>
 <h1 align="center">非万！ - Linux fork</h1>
 
 <div align="center">
-    <img width="300" src="images/desc.png" alt="项目Logo">
-    <p>* Linux® 是 Linus Torvalds 在美国和其他国家的注册商标。</p>
+    <img width="150" src="images/logo.png" alt="项目Logo">
 </div>
 
 <h4 align="center">一款为Linux平台设计的简约高效、技术激进的实验性工具箱</h4>
@@ -43,7 +42,6 @@
 - [📁 项目结构](#-项目结构)
 - [🔗 技术栈](#-技术栈)
 - [📜 版权与许可证](#-版权与许可证)
-- [❌ PLAN NO 计划](#hoe-team-plan-no-计划)
 
 ## ✨ 特性
 
@@ -204,15 +202,3 @@ NNETB-For-Linux/
 > NNETB 的徽标为 HOE Team 所有，受法律保护。未经明确书面授权，不得用于商业用途或进行修改后使用。
 >
 > Linux® 是 Linus Torvalds 在美国和其他国家的注册商标。
-
----
-
-# HOE Team PLAN NO 计划
-<div align="center" class="plan-no-intro">
-   <img src="images/PLAN_NO.png" alt="PLAN-NO徽标"> 
-</div>
-
-PLAN NO 是 HOE Team 发起的技术计划，核心目标是复刻、优化并超越某些挂羊头卖狗肉、开源违规或闭源侵权的劣迹项目。我们不针对“写得差”的开源——差归差，自己写自己担。我们针对的是三类行为：挂 GPL 却喊“我有权不开源”的虚假承诺；用 GPL 代码却闭源分发的规则无视；打包侵权工具、不标许可证、用户崩溃无人管的闭源糟粕。PLAN NO 坚持用现代技术栈、遵守开源规则、提供透明合规的替代方案，用代码说话，做本该更好的工具。
-
-> [!NOTE]
-> PLAN NO 徽标采用 CC BY-NC-ND 4.0 许可证发布，允许署名引用，禁止商业用途与修改。
