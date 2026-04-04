@@ -19,6 +19,7 @@ import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Build
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.filled.Terminal
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -28,8 +29,9 @@ fun NavRail(onSelection: (Int) -> Unit = {}) {
         Column(modifier = Modifier.fillMaxHeight(), verticalArrangement = androidx.compose.foundation.layout.Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
             NavigationRailItem(selected = selected == 0, onClick = { selected = 0; onSelection(0) }, icon = { Icon(Icons.Filled.Home, contentDescription = "Home") }, label = { Text("概览") })
             NavigationRailItem(selected = selected == 1, onClick = { selected = 1; onSelection(1) }, icon = { Icon(Icons.Filled.Build, contentDescription = "Tools") }, label = { Text("工具") })
-            NavigationRailItem(selected = selected == 2, onClick = { selected = 2; onSelection(2) }, icon = { Icon(Icons.Filled.Settings, contentDescription = "Settings") }, label = { Text("设置") })
-            NavigationRailItem(selected = selected == 3, onClick = { selected = 3; onSelection(3) }, icon = { Icon(Icons.Filled.Info, contentDescription = "About") }, label = { Text("关于") })
+            NavigationRailItem(selected = selected == 2, onClick = { selected = 2; onSelection(2) }, icon = { Icon(Icons.Filled.Terminal, contentDescription = "Terminal") }, label = { Text("终端") })
+            NavigationRailItem(selected = selected == 3, onClick = { selected = 3; onSelection(3) }, icon = { Icon(Icons.Filled.Settings, contentDescription = "Settings") }, label = { Text("设置") })
+            NavigationRailItem(selected = selected == 4, onClick = { selected = 4; onSelection(4) }, icon = { Icon(Icons.Filled.Info, contentDescription = "About") }, label = { Text("关于") })
         }
     }
 }

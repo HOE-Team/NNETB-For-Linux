@@ -11,6 +11,7 @@ import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material.icons.filled.Download
 import androidx.compose.material.icons.filled.Description
 import androidx.compose.material.icons.filled.Terminal
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -21,6 +22,7 @@ import java.net.URI
 import utils.PackageManagerUtils
 import utils.PackageManagerType
 import utils.CommonPackages
+import utils.TerminalSessionManager
 
 data class ToolItem(
     val name: String,
@@ -276,48 +278,14 @@ fun ToolCard(tool: ToolItem, modifier: Modifier = Modifier) {
                 
                 // 安装确认对话框
                 if (showInstallDialog) {
-                    AlertDialog(
-                        onDismissRequest = { showInstallDialog = false },
-                        title = { Text("确认安装") },
-                        text = { 
-                            Column {
-                                Text("将执行以下命令安装 ${tool.name}:")
-                                Spacer(modifier = Modifier.height(8.dp))
-                                Text(
-                                    text = installCommand,
-                                    style = MaterialTheme.typography.bodySmall,
-                                    color = MaterialTheme.colorScheme.primary,
-                                    modifier = Modifier
-                                        .background(
-                                            color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.3f),
-                                            shape = RoundedCornerShape(4.dp)
-                                        )
-                                        .padding(8.dp)
-                                )
-                                Spacer(modifier = Modifier.height(8.dp))
-                                Text(
-                                    text = "注意：这需要管理员权限，可能会要求输入密码。",
-                                    style = MaterialTheme.typography.bodySmall,
-                                    color = MaterialTheme.colorScheme.error
-                                )
-                            }
-                        },
-                        confirmButton = {
-                            Button(
-                                onClick = {
-                                    executeInstallCommand(installCommand, tool.name)
-                                    showInstallDialog = false
-                                }
-                            ) {
-                                Text("确认安装")
-                            }
-                        },
-                        dismissButton = {
-                            OutlinedButton(
-                                onClick = { showInstallDialog = false }
-                            ) {
-                                Text("取消")
-                            }
+                    InstallConfirmationDialog(
+                        toolName = tool.name,
+                        installCommand = installCommand,
+                        onDismiss = { showInstallDialog = false },
+                        onConfirm = {
+                            // 使用TerminalSessionManager执行命令
+                            TerminalSessionManager.executeCommand(installCommand)
+                            showInstallDialog = false
                         }
                     )
                 }
@@ -408,48 +376,173 @@ private fun openToolWebsite(url: String) {
 }
 
 /**
- * 执行安装命令
+ * 安装确认对话框
  */
-private fun executeInstallCommand(command: String, packageName: String) {
-    try {
-        println("执行安装命令: $command")
-        
-        // 在Linux上执行命令
-        val process = Runtime.getRuntime().exec(arrayOf("sh", "-c", command))
-        
-        // 启动线程读取输出
-        val outputReader = Thread {
-            val reader = process.inputStream.bufferedReader()
-            var line: String?
-            while (reader.readLine().also { line = it } != null) {
-                println("安装输出: $line")
+@Composable
+fun InstallConfirmationDialog(
+    toolName: String,
+    installCommand: String,
+    onDismiss: () -> Unit,
+    onConfirm: () -> Unit
+) {
+    var showOutputDialog by remember { mutableStateOf(false) }
+    
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text("确认安装") },
+        text = { 
+            Column {
+                Text("将执行以下命令安装 $toolName:")
+                Spacer(modifier = Modifier.height(8.dp))
+                Text(
+                    text = installCommand,
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.primary,
+                    modifier = Modifier
+                        .background(
+                            color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.3f),
+                            shape = RoundedCornerShape(4.dp)
+                        )
+                        .padding(8.dp)
+                )
+                Spacer(modifier = Modifier.height(8.dp))
+                Text(
+                    text = "注意：这需要管理员权限，可能会要求输入密码。",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.error
+                )
+            }
+        },
+        confirmButton = {
+            Button(
+                onClick = {
+                    onConfirm()
+                    showOutputDialog = true
+                }
+            ) {
+                Text("确认安装")
+            }
+        },
+        dismissButton = {
+            OutlinedButton(
+                onClick = onDismiss
+            ) {
+                Text("取消")
             }
         }
-        outputReader.start()
-        
-        val errorReader = Thread {
-            val reader = process.errorStream.bufferedReader()
-            var line: String?
-            while (reader.readLine().also { line = it } != null) {
-                println("安装错误: $line")
+    )
+    
+    // 输出对话框
+    if (showOutputDialog) {
+        OutputDialog(
+            onDismiss = {
+                showOutputDialog = false
+                onDismiss()
             }
-        }
-        errorReader.start()
-        
-        // 等待命令完成
-        val exitCode = process.waitFor()
-        outputReader.join()
-        errorReader.join()
-        
-        if (exitCode == 0) {
-            println("安装成功: $packageName")
-            // 这里可以添加UI反馈，比如显示成功消息
-        } else {
-            println("安装失败: $packageName, 退出码: $exitCode")
-            // 这里可以添加UI反馈，比如显示错误消息
-        }
-    } catch (e: Exception) {
-        println("执行安装命令时出错: ${e.message}")
-        e.printStackTrace()
+        )
     }
+}
+
+/**
+ * 输出对话框，显示终端实时输出
+ */
+@Composable
+fun OutputDialog(
+    onDismiss: () -> Unit
+) {
+    var terminalOutput by remember { mutableStateOf("") }
+    var isRunning by remember { mutableStateOf(false) }
+    
+    // Collect flow updates
+    LaunchedEffect(Unit) {
+        TerminalSessionManager.outputFlow.collect { output ->
+            terminalOutput = output
+        }
+    }
+    
+    LaunchedEffect(Unit) {
+        TerminalSessionManager.isRunning.collect { running ->
+            isRunning = running
+        }
+    }
+    
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text("输出") },
+        text = { 
+            Column {
+                // 输出显示区域
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(300.dp)
+                        .background(
+                            color = androidx.compose.ui.graphics.Color.Black.copy(alpha = 0.9f),
+                            shape = RoundedCornerShape(4.dp)
+                        )
+                        .padding(8.dp)
+                ) {
+                    val scrollState = rememberScrollState()
+                    
+                    LaunchedEffect(terminalOutput) {
+                        scrollState.animateScrollTo(scrollState.maxValue)
+                    }
+                    
+                    Text(
+                        text = terminalOutput,
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .verticalScroll(scrollState),
+                        style = androidx.compose.ui.text.TextStyle(
+                            color = androidx.compose.ui.graphics.Color.Green,
+                            fontSize = 10.sp,
+                            fontFamily = androidx.compose.ui.text.font.FontFamily.Monospace
+                        ),
+                        maxLines = Int.MAX_VALUE
+                    )
+                }
+                
+                Spacer(modifier = Modifier.height(8.dp))
+                
+                // 状态提示
+                if (isRunning) {
+                    Text(
+                        text = "安装正在进行中...",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.primary
+                    )
+                } else {
+                    Text(
+                        text = "安装已完成。",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+            }
+        },
+        confirmButton = {
+            if (isRunning) {
+                // 如果进程正在运行，显示"取消"按钮（发送Ctrl+C）
+                OutlinedButton(
+                    onClick = {
+                        TerminalSessionManager.stopCurrentProcess()
+                    },
+                    colors = ButtonDefaults.outlinedButtonColors(
+                        contentColor = MaterialTheme.colorScheme.error
+                    )
+                ) {
+                    Icon(Icons.Default.Close, contentDescription = "取消", modifier = Modifier.size(16.dp))
+                    Spacer(modifier = Modifier.width(4.dp))
+                    Text("取消 (Ctrl+C)")
+                }
+            } else {
+                // 如果进程已完成，显示"关闭"按钮
+                Button(
+                    onClick = onDismiss
+                ) {
+                    Text("关闭")
+                }
+            }
+        }
+    )
 }

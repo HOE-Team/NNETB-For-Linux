@@ -30,3 +30,9 @@ replay_pid*
 /build
 /.gradle
 *.sh
+
+# IDEA
+/.idea
+
+# NFLX
+/config

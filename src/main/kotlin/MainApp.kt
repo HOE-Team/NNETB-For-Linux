@@ -12,6 +12,7 @@ import screens.HomeScreen
 import screens.ToolsScreen
 import screens.SettingsScreen
 import screens.AboutScreen
+import screens.TerminalScreen
 import theme.AppTheme
 import config.loadConfig
 import config.saveConfig
@@ -34,8 +35,9 @@ fun main() = application {
 
         val topBarTitle = when (selectedNavIndex) {
             1 -> "工具"
-            2 -> "设置"
-            3 -> "关于"
+            2 -> "终端"
+            3 -> "设置"
+            4 -> "关于"
             else -> "概览"
         }
 
@@ -51,7 +53,8 @@ fun main() = application {
             ) {
                 when (selectedNavIndex) {
                     1 -> ToolsScreen()
-                    2 -> SettingsScreen(
+                    2 -> TerminalScreen()
+                    3 -> SettingsScreen(
                         isDarkTheme = isDark,
                         onThemeChange = { newDark ->
                             isDark = newDark
@@ -63,7 +66,7 @@ fun main() = application {
                             saveConfig(AppConfig(dark = isDark, color = seedHex))
                         }
                     )
-                    3 -> AboutScreen()
+                    4 -> AboutScreen()
                     else -> HomeScreen()
                 }
             }
