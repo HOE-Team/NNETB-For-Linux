@@ -36,7 +36,7 @@ compose.desktop {
             // Linux only
             targetFormats(TargetFormat.Deb, TargetFormat.Rpm, TargetFormat.AppImage)
             packageName = "NNETBsNotEverythingToolbox"
-            packageVersion = "0.0.1"
+            packageVersion = "0.0.2"
             
             linux {
                 iconFile.set(project.file("images/logo.png"))
