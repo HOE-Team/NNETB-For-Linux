@@ -26,7 +26,7 @@ fun AboutScreen() {
     ) {
         // 标题
         Text(
-            text = "非万L(NFL)",
+            text = "非万Linux(NFLX)",
             style = MaterialTheme.typography.headlineLarge,
             textAlign = TextAlign.Start
         )
@@ -60,7 +60,7 @@ fun AboutScreen() {
         )
         Spacer(modifier = Modifier.height(8.dp))
         Text(
-            text = "版本：ElectronTube-v0.0.1",
+            text = "版本：ElectronTube-v0.0.2",
             style = MaterialTheme.typography.bodyMedium
         )
 
@@ -75,12 +75,12 @@ fun AboutScreen() {
         )
         Spacer(modifier = Modifier.height(12.dp))
         Text(
-            text = "版权所有 (C) 2026 HOE Team。 保留所有权利",
+            text = "版权所有 (C) 2026 HOE Team。 保留部分权利",
             style = MaterialTheme.typography.bodyMedium
         )
         Spacer(modifier = Modifier.height(8.dp))
         Text(
-            text = "项目使用MIT协议开源",
+            text = "项目使用GNU GPL v3协议开源",
             style = MaterialTheme.typography.bodyMedium
         )
 
