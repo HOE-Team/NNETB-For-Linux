@@ -8,7 +8,7 @@
 </div>
 
 <h1 align="center">NNETB's Not Everything Toolbox For Linux</h1>
-<h1 align="center">非万！ - Linux fork</h1>
+<h2 align="center">非万！ - Linux fork</h2>
 
 <div align="center">
     <img width="150" src="images/logo.png" alt="项目Logo">
@@ -187,18 +187,15 @@ NNETB-For-Linux/
 
 版权所有 © 2026 HOE Team。保留部分权利。
 
-本项目基于 [GNU GPL v3 许可证](LICENSE) 开源。
+本项目（NNETB-For-Linux）基于 **[GNU GPL v3 许可证](LICENSE)** 开源，是独立于 [NNETB](https://github.com/HOE-Team/NNETB) 原项目（[MIT 许可证](LICENSE-MIT)）的 Linux 平台实验性分支。
 
 > [!NOTE]
-> 这份许可证意味着：
->
->你可以自由使用、修改、复制、分发这个项目代码，无论是在个人项目还是商业项目中。
->
->如果你修改并重新发布这个代码，你必须以 GPL v3 许可证公开你的修改后的源代码（即“传染性”开源）。
->
->你可以用它来开发商业软件并销售，但你必须同时以 GPL v3 许可证提供你修改后的完整源代码。
->
->作者不提供任何保证，如果使用该软件导致任何问题，你需要自己承担风险。
+> 这份许可证(GNU GPL v3)意味着：
+> 
+> 你可以自由使用、修改、复制、分发这个项目代码，无论是在个人项目还是商业项目中。
+> 如果你修改并重新发布这个代码，你必须以 GPL v3 许可证公开你的修改后的源代码（即“传染性”开源）。
+> 你可以用它来开发商业软件并销售，但你必须同时以 GPL v3 许可证提供你修改后的完整源代码。
+> 作者不提供任何保证，如果使用该软件导致任何问题，你需要自己承担风险。
 
 > [!WARNING]
 > ### 著作权声明

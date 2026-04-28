@@ -36,3 +36,6 @@ replay_pid*
 
 # NFLX
 /config
+
+# MT Manager
+*.bak
