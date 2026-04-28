@@ -1,3 +1,10 @@
+/*
+ * SPDX-FileCopyrightText: ©2026 HOE Team
+ * SPDX-License-Identifier: GPL-3.0-only
+ *
+ * Project: NNETB-For-Linux
+ */
+
 package utils
 
 /**
