@@ -94,8 +94,6 @@ java -jar build/libs/NNETB-all.jar
 - **包含Linux原生库**：JAR中已包含必要的Linux Skiko库（libskiko-linux-x64.so）
 
 ## 🤝 如何贡献
-
-## 🤝 如何贡献
 > [!IMPORTANT]
 > ### 本项目不再受理新的Pull Request，如果发现了严重Bug，请创建一个Bug [Issue](https://github.com/HOE-Team/NNETB/issues).
 
