@@ -29,7 +29,7 @@
 ## 📋 项目状态
 
 > [!IMPORTANT]
-> 这是一个**实验性项目**，采用激进的技术栈（Kotlin + CMP），构建不稳定且不会受到长期维护。我们强烈建议贡献者再三考虑是否参与，因为不保证项目的长期维护和稳定性。
+> 这是一个**实验性项目**，采用激进的技术栈（Kotlin + CMP），现在已经进入**终结性**维护，将**不再**受理Pull Request和Feature Issue。
 
 ## 📑 目录
 
@@ -95,63 +95,9 @@ java -jar build/libs/NNETB-all.jar
 
 ## 🤝 如何贡献
 
-你可以向我们发送 Issue 或提交 PR。
-
-**但我们不建议你这么做。**
-
-本项目技术栈激进（KMP + CMP），构建不稳定，且不保证长期维护。如果你提交 PR，可能不会被合并，也可能合进去了但项目明天就归档。
-
-> [!NOTE]
-> 那为什么还要写 PR 指南？因为——万一真有开发者觉得这个项目值得认真做下去，甚至想把它变成一个正经工具箱，我们不能让人家摸黑进门。门开着，PR 指南写好了，但你进来之前，**请三思**。
-
-如果你三思过后还是想提交，我们感谢你的认真。PR 审核可能会很慢，也可能没有下文，但这不是你的问题，是这个项目状态的问题。
-
-<details>
-<summary>PR 提交流程（点击展开）</summary>
-
-### 步骤
-
-1. **创建分支**
-   ```bash
-   git checkout -b feat/功能描述
-   ```
-
-2. **提交代码**
-   ```bash
-   git add .
-   git commit -m "feat: 功能描述"
-   ```
-
-3. **推送分支**
-   ```bash
-   git push origin feat/功能描述
-   ```
-
-4. **创建 PR**
-   - 前往 GitHub 仓库
-   - 点击 "New Pull Request"
-   - 选择你的分支
-   - 填写标题和描述
-   - 提交
-
-### 提交信息格式
-```
-类型: 描述
-
-feat    - 新功能
-fix     - 修复bug
-docs    - 文档更新
-style   - 代码格式
-refactor- 代码重构
-```
-
-### 示例
-```
-git commit -m "feat: 添加新功能"
-git commit -m "fix: 修复已知问题"
-```
-
-</details>
+## 🤝 如何贡献
+> [!IMPORTANT]
+> ### 本项目不再受理新的Pull Request，如果发现了严重Bug，请创建一个Bug [Issue](https://github.com/HOE-Team/NNETB/issues).
 
 ## 📁 项目结构
 
@@ -202,6 +148,6 @@ NNETB-For-Linux/
 
 > [!WARNING]
 > ### 著作权声明
-> NNETB 的徽标为 HOE Team 所有，受法律保护。未经明确书面授权，不得用于商业用途或进行修改后使用。
+> NNETB 的徽标为 HOE Team 所有，受法律保护。未经明确书面授权，不得用于商业用途或进行修改后使用。在项目生命周期终结(具体以理事会文件为准)后，本项目 Logo 将使用 CC0-1.0 开放到公共领域。
 >
 > Linux® 是 Linus Torvalds 在美国和其他国家的注册商标。
